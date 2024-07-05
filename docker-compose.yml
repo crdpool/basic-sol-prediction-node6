@@ -2,19 +2,19 @@ version: '3'
 
 services:
   inference:
-    container_name: inference-basic-btc-pred
+    container_name: inference-basic-sol-pred
     build:
       context: .
     command: python -u /app/app.py
     ports:
       - "8000:8000"
     networks:
-      btc-model-local:
+      sol-model-local:
         aliases:
           - inference
         ipv4_address: 172.22.0.4
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:8000/inference/btc"]
+      test: ["CMD", "curl", "-f", "http://localhost:8000/inference/sol"]
       interval: 10s
       timeout: 10s
       retries: 12
@@ -22,7 +22,7 @@ services:
       - ./inference-data:/app/data
 
   worker:
-    container_name: worker-basic-btc-pred
+    container_name: worker-basic-sol-pred
     environment:
       - INFERENCE_API_ADDRESS=http://inference:8000
       - HOME=/data
@@ -55,13 +55,13 @@ services:
       - inference
       - head
     networks:
-      btc-model-local:
+      sol-model-local:
         aliases:
           - worker
         ipv4_address: 172.22.0.10
 
   head:
-    container_name: head-basic-btc-pred
+    container_name: head-basic-sol-pred
     image: alloranetwork/allora-inference-base-head:latest
     environment:
       - HOME=/data
@@ -84,13 +84,13 @@ services:
       - ./head-data:/data
     working_dir: /data
     networks:
-      btc-model-local:
+      sol-model-local:
         aliases:
           - head
         ipv4_address: 172.22.0.100
 
 networks:
-  btc-model-local:
+  sol-model-local:
     driver: bridge
     ipam:
       config:
