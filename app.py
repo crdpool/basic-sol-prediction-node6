@@ -15,7 +15,7 @@ model_name = "amazon/chronos-t5-tiny"
 @app.route("/inference/<string:token>")
 def get_inference(token):
     """Generate inference for given token."""
-    if not token or token != "BTC":
+    if not token or token != "SOL":
         error_msg = "Token is required" if not token else "Token not supported"
         return Response(json.dumps({"error": error_msg}), status=400, mimetype='application/json')
     try:
@@ -29,7 +29,7 @@ def get_inference(token):
         return Response(json.dumps({"pipeline error": str(e)}), status=500, mimetype='application/json')
  
     # get the data from Coingecko
-    # here we'll use last 30 days of BTC/USD
+    # here we'll use last 30 days of SOL/USD
     url = "https://api.coingecko.com/api/v3/coins/bitcoin/market_chart?vs_currency=usd&days=30&interval=daily"
  
     headers = {
