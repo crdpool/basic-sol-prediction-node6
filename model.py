@@ -10,12 +10,12 @@ from config import data_base_path, model_file_path
 
 
 binance_data_path = os.path.join(data_base_path, "binance/futures-klines")
-training_price_data_path = os.path.join(data_base_path, "eth_price_data.csv")
+training_price_data_path = os.path.join(data_base_path, "sol_price_data.csv")
 
 
 def download_data():
     cm_or_um = "um"
-    symbols = ["ETHUSDT"]
+    symbols = ["SOLUSDT"]
     intervals = ["1d"]
     years = ["2020", "2021", "2022", "2023", "2024"]
     months = ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"]
@@ -73,7 +73,7 @@ def format_data():
 
 
 def train_model():
-    # Load the eth price data
+    # Load the  price data
     price_data = pd.read_csv(training_price_data_path)
     df = pd.DataFrame()
 
