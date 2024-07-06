@@ -30,7 +30,7 @@ def get_inference(token):
  
     # get the data from Coingecko
     # here we'll use last 30 days of SOL/USD
-    url = "https://api.coingecko.com/api/v3/coins/bitcoin/market_chart?vs_currency=usd&days=30&interval=daily"
+    url = "https://api.coingecko.com/api/v3/coins/solana/market_chart?vs_currency=usd&days=30&interval=daily"
  
     headers = {
         "accept": "application/json",
