@@ -14,7 +14,7 @@ services:
           - inference
         ipv4_address: 172.22.0.4
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:8000/inference/sol"]
+      test: ["CMD", "curl", "-f", "http://localhost:8000/inference/SOL"]
       interval: 10s
       timeout: 10s
       retries: 12
